@@ -16,10 +16,15 @@ ActiveRecord::Schema.define(version: 20151013183907) do
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "location"
+    t.string   "country"
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "address_line1"
+    t.string   "state"
+    t.string   "city"
+    t.string   "zip"
+    t.string   "dob"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
 end

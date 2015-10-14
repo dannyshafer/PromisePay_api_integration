@@ -1,6 +1,6 @@
+require 'promisepay'
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
   # GET /users
   # GET /users.json
   def index
@@ -25,9 +25,21 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
+    client = Promisepay::Client.new(username: ENV['PROMISEPAY_USERNAME'], token: ENV['PROMISEPAY_TOKEN'])
     respond_to do |format|
       if @user.save
+        user = client.users.create(
+            id: @user.id,
+            first_name: @user.first_name,
+            last_name: @user.last_name,
+            email: @user.email,
+            address_line1: @user.address_line1,
+            state: @user.state,
+            city: @user.city,
+            zip: @user.zip,
+            country: @user.country,
+            dob:@user.dob
+          )
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -69,6 +81,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :location)
+      params.require(:user).permit(:first_name, :last_name, :email, :address_line1, :country, :city, :state, :zip, :dob)
     end
 end
