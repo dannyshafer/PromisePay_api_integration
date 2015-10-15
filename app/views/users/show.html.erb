@@ -1,24 +1,26 @@
-<script id="promisepay-integration" type="text/javascript" data-jquery="true" src="https://express.prelive.promisepay.com/dist/wrapper.js"></script>
+<div class="container">
+  <script id="promisepay-integration" type="text/javascript" data-jquery="true" src="https://express.prelive.promisepay.com/dist/wrapper.js"></script>
 
-<p id="notice"><%= notice %></p>
+  <p id="notice"><%= notice %></p>
 
-<h1><%= @user.first_name %> <%= @user.last_name %></h1><br>
-<h1><%= @user.country %></h1><br>
-<h1><%= @user.email %></h1><br>
+  <h1><%= @user.first_name %> <%= @user.last_name %></h1><br>
+  <h1><%= @user.country %></h1><br>
+  <h1><%= @user.email %></h1><br>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
-<br>
-<%  if @user.cards.first != nil %>
-<p><%= @user.first_name %>'s Cards</p>
-<% @user.cards.each do |card| %>
-<%= link_to card.full_name, card_path %>
-<% end %>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Back', users_path %>
+  <br>
+  <%  if @user.cards.first != nil %>
+  <p><%= @user.first_name %>'s Cards</p>
+  <% @user.cards.each do |card| %>
+  <%= link_to card.full_name, card_path %>
+  <% end %>
 
-<h5>Send Money To Other Users</h5>
-<% @users.each do |recepient| %>
-<% if recepient.id != @user.id %>
-<p><%= link_to recepient.first_name, recepient %></p>
-<% end %>
-<% end %>
-<% end %>
+  <h5>Send Money To Other Users</h5>
+  <% @users.each do |recepient| %>
+  <% if recepient.id != @user.id %>
+  <p><%= link_to recepient.first_name, recepient %></p>
+  <% end %>
+  <% end %>
+  <% end %>
+</div>
