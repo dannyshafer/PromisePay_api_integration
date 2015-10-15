@@ -1,3 +1,5 @@
+<script id="promisepay-integration" type="text/javascript" data-jquery="true" src="https://express.prelive.promisepay.com/dist/wrapper.js"></script>
+
 <p id="notice"><%= notice %></p>
 
 <h1><%= @user.first_name %></h1><br>
@@ -7,3 +9,8 @@
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+<h5>Send Money To Other Users</h5>
+<% @users.each do |recepient| %>
+  <p><%= link_to recepient.first_name, recepient %></p>
+<% end %>
