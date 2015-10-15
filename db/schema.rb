@@ -32,12 +32,12 @@ ActiveRecord::Schema.define(version: 20151015000626) do
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "country"
     t.string   "email"
     t.string   "address_line1"
     t.string   "state"
     t.string   "city"
     t.string   "zip"
+    t.string   "country"
     t.string   "dob"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false

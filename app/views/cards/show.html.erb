@@ -1,4 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+<p><%= @card.full_name %></p>
+<p><%= @card.number %></p>
+<p><%= @card.cvv %></p>
+
 <%= link_to 'Edit', edit_card_path(@card) %> |
 <%= link_to 'Back', cards_path %>

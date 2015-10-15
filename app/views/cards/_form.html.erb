@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :user %>
-    <%= f.select :user_id, User.all.collect {|x| [x.first_name, x.id]}, {:include_blank => 'Select One'} %><br>
+    <%= f.select :user_id, User.all.collect {|card_holder| [card_holder.first_name, card_holder.id]}, {:include_blank => 'Select One'} %><br>
   </div>
 
   <div class="field">
