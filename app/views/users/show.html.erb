@@ -1,17 +1,32 @@
-<div class="container">
   <script id="promisepay-integration" type="text/javascript" data-jquery="true" src="https://express.prelive.promisepay.com/dist/wrapper.js"></script>
+  <script>
+  $( document ).ready(function() {
+    $('.transaction_modal').click(function(event, data) {
+      event.preventDefault();
+      console.log("we made it y'all!!");
+      console.log(data);
+      $.ajax({
+        method: "POST",
+        url: "",
+      // come back and fix this one
+    })
+      .done(function( msg ) {
+        alert( "Making a note here: huge success" );
+      });
+    });
+  });
+  </script>
 
   <p id="notice"><%= notice %></p>
 
-  <h1><%= @user.first_name %> <%= @user.last_name %></h1><br>
-  <h1><%= @user.country %></h1><br>
-  <h1><%= @user.email %></h1><br>
+  <h3><%= @user.first_name %> <%= @user.last_name %></h3>
+  <h3><%= @user.email %></h3><br>
 
   <%= link_to 'Edit', edit_user_path(@user) %> |
   <%= link_to 'Back', users_path %>
   <br>
   <%  if @user.cards.first != nil %>
-  <p><%= @user.first_name %>'s Cards</p>
+  <h5><%= @user.first_name %>'s Cards</h5>
   <% @user.cards.each do |card| %>
   <%= link_to card.full_name, card_path %>
   <% end %>
@@ -19,8 +34,9 @@
   <h5>Send Money To Other Users</h5>
   <% @users.each do |recepient| %>
   <% if recepient.id != @user.id %>
-  <p><%= link_to recepient.first_name, recepient %></p>
+  <p><%= link_to "Send #{recepient.first_name} #{recepient.last_name} some money", new_transaction_path(@user, recepient), class: 'btn btn-success btn-xs transaction_modal' %></p>
   <% end %>
   <% end %>
   <% end %>
-</div>
+
+  <div id="promisepay-1" data-session="SESSION_TOKEN_GOES_HERE" data-type="1" class="promisepay-widget"></div>
