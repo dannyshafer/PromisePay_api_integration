@@ -11,6 +11,36 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <%= f.label :user %>
+    <%= f.select :user_id, User.all.collect {|x| [x.first_name, x.id]}, {:include_blank => 'Select One'} %><br>
+  </div>
+
+  <div class="field">
+    <%= f.label :full_name %><br />
+    <%= f.text_field :full_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :number %><br />
+    <%= f.text_field :number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :expiry_month %><br />
+    <%= f.text_field :expiry_month %>
+  </div>
+
+  <div class="field">
+    <%= f.label :expiry_year %><br />
+    <%= f.text_field :expiry_year %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cvv %><br />
+    <%= f.text_field :cvv %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

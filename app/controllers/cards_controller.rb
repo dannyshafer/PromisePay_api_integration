@@ -25,9 +25,17 @@ class CardsController < ApplicationController
   # POST /cards.json
   def create
     @card = Card.new(card_params)
-
+    client = Promisepay::Client.new(username: ENV['PROMISEPAY_USERNAME'], token: ENV['PROMISEPAY_TOKEN'])
     respond_to do |format|
       if @card.save
+        card_account = client.card_accounts.create(
+          user_id: @card.user_id,
+          full_name: @card.full_name,
+          number: @card.number,
+          expiry_month: @card.expiry_month,
+          expiry_year: @card.expiry_year,
+          cvv: @card.cvv
+        )
         format.html { redirect_to @card, notice: 'Card was successfully created.' }
         format.json { render :show, status: :created, location: @card }
       else
@@ -69,6 +77,6 @@ class CardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def card_params
-      params[:card]
+      params.require(:card).permit(:user_id, :full_name, :number, :expiry_month, :expiry_year, :cvv)
     end
 end
