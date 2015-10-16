@@ -37,7 +37,7 @@ class UsersController < ApplicationController
             city: @user.city,
             zip: @user.zip,
             country: @user.country,
-            dob:@user.dob
+            dob: @user.dob
           )
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
@@ -55,7 +55,17 @@ class UsersController < ApplicationController
     user = client.users.find(@user.id)
     respond_to do |format|
       if @user.update(user_params)
-        user.update(user_params)
+        user.update(
+          first_name: @user.first_name,
+          last_name: @user.last_name,
+          email: @user.email,
+          address_line1: @user.address_line1,
+          state: @user.state,
+          city: @user.city,
+          zip: @user.zip,
+          country: @user.country,
+          dob: @user.dob
+          )
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
