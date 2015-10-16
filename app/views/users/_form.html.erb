@@ -52,10 +52,10 @@
   </div>
 
   <div class="field">
-    <%= f.label :country %><br />
-    <%= f.text_field :country %>
-    <p>Country three-letter code ("AUS")</p>
+    <%= f.label :country %>
+    <%= f.select :country, Country.all.collect {|country| [country.name, country.code]}, {:include_blank => 'Select One'} %><br>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
