@@ -11,5 +11,4 @@ This is a simple Rails app skeleton which has the most straightforward integrati
 
 Visit the following link for more comprehensive instructions on the PP gem and its use:
 
-Read the full documentation here:
-(https://github.com/PromisePay/promisepay-ruby).
+https://github.com/PromisePay/promisepay-ruby.
