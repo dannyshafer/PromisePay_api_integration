@@ -1,6 +1,7 @@
 == README
 
-This is a simple Rails app skeleton which has the most straightforward integration with PromisePay's API. It corresponds to the tutorial in PromisePay's documentation [here](https://promisepay-docs.readme.io/v1.0/docs/api-1)
+This is a simple Rails app skeleton which has the most straightforward integration with PromisePay's API. It corresponds to the tutorial in PromisePay's documentation here:
+(https://promisepay-docs.readme.io/v1.0/docs/api-1)
 
 1. Clone
 2. Bundle
@@ -10,4 +11,5 @@ This is a simple Rails app skeleton which has the most straightforward integrati
 
 Visit the following link for more comprehensive instructions on the PP gem and its use:
 
-Read the full documentation [here](https://github.com/PromisePay/promisepay-ruby).
+Read the full documentation here:
+(https://github.com/PromisePay/promisepay-ruby).
