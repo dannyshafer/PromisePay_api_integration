@@ -1,0 +1,96 @@
+<script id="promisepay-integration" type="text/javascript" data-jquery="true" src="https://escrow.prelive.promisepay.com/dist/wrapper.js"></script>
+<div class="contain-to-grid demo">
+    <nav class="top-bar demo">
+        <div class="row">
+            <div class="column small-4 text-left">
+                Seller
+            </div>
+            <div class="column small-8 text-center">
+                <div id="promisepay-1" data-session="SESSION_TOKEN_GOES_HERE" data-type="1" class="promisepay-widget"></div>
+            </div>
+            <div class="column small-4 text-right">
+                Buyer
+            </div>
+        </div>
+    </nav>
+</div>
+<main class="main demo" role="main">
+    <!--<div class="row">-->
+    <!--<div class="column small-16 text-left">-->
+    <% if cookies[:widget] %>
+        <div id="seller-widget" style="display:none;" data-session="<%= @seller_token %>" data-type="<%= cookies[:widget] %>" data-buyer_profile_link="http://google.com" data-seller_profile_link="http://google.com" class="promisepay-widget main-widget">
+        </div>
+        <div id="buyer-widget" data-session="<%= @buyer_token %>" data-type="<%= cookies[:widget] %>" data-buyer_profile_link="http://google.com" data-seller_profile_link="http://google.com" class="promisepay-widget main-widget">
+        </div>
+        <br/><br/>
+    <% else %>
+        <div id="seller-widget" style="display:none;" data-session="<%= @seller_token %>" data-type="12" data-buyer_profile_link="http://google.com" data-seller_profile_link="http://google.com" class="promisepay-widget main-widget">
+        </div>
+        <div id="buyer-widget" data-session="<%= @buyer_token %>" data-type="12" data-buyer_profile_link="http://google.com" data-seller_profile_link="http://google.com" class="promisepay-widget main-widget">
+        </div>
+        <br/><br/>
+    <% end %>
+    <!--<br/><br/>-->
+    <!--<div data-session="<%= @seller_token %>" data-type="1" class="promisepay-widget">-->
+    <!--</div>-->
+    <!--<br/><br/>-->
+    <!--<div data-session="<%= @seller_token %>" data-type="3" class="promisepay-widget">-->
+    <!--</div>-->
+    <!--<br/><br/>-->
+    <!--<div data-session="<%= @seller_token %>" data-type="4" class="promisepay-widget">-->
+    <!--</div>-->
+    <!--<br/><br/>-->
+    <!--<div data-session="<%= @seller_token %>" data-type="5" class="promisepay-widget">-->
+    <!--</div>-->
+    <!--<div class="column small-8 text-right">-->
+
+    <!--<div data-session="<%= @buyer_token %>" data-type="2" class="promisepay-widget">-->
+    <!--</div>-->
+    <!--<br/><br/>-->
+    <!--<div data-session="<%= @buyer_token %>" data-type="3" class="promisepay-widget">-->
+    <!--</div>-->
+    <!--<br/><br/>-->
+    <!--<div data-session="<%= @buyer_token %>" data-type="4" class="promisepay-widget">-->
+    <!--</div>-->
+    <!--<br/><br/>-->
+    <!--<div data-session="<%= @buyer_token %>" data-type="5" class="promisepay-widget">-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <div data-no-turbolink>
+        <a href="#" onclick="toggleBuyer()" class="highlight button user-button" style="bottom: 4rem;">Buyer</a>
+    </div>
+    <div data-no-turbolink>
+        <a href="#" onclick="toggleSeller()" class="highlight button user-button-seller">Seller</a>
+    </div>
+    <div data-no-turbolink>
+        <a href="/demo/small-widget" class="grey button user-button" style="bottom: 6.45rem;">Small</a>
+    </div>
+    <div data-no-turbolink>
+        <a href="/demo/mega-widget" class="grey button user-button-seller" style="bottom: 8.8rem;">Mega</a>
+    </div>
+    <div data-no-turbolink>
+        <a href="/demo/create-escrow" class="highlight button reset-button" style="bottom: 4rem;">Reset - Escrow</a>
+    </div>
+    <div data-no-turbolink>
+        <a href="/demo/create-partial-release" class="highlight button reset-button">Reset - Partial Release</a>
+    </div>
+    <div data-no-turbolink>
+        <a href="/demo/create-instant" class="highlight button reset-button" style="bottom: 6.45rem;">Reset - Instant</a>
+    </div>
+    <div data-no-turbolink>
+        <a href="/demo/reset-seller" class="grey button reset-button" style="bottom: 8.8rem;">Reset Seller</a>
+    </div>
+    <div data-no-turbolink>
+        <a href="/demo/verified-seller" class="grey button reset-button" style="bottom: 11.3rem;">Use Verified Seller</a>
+    </div>
+    <!--<div class="instructions">-->
+    <!--<p>Use mobile code <strong>123456</strong> in the demo environment.</p>-->
+    <!--<p>Payments are processed every <strong>3 minutes</strong> when paying by bank transfer in the demo environment.</p>-->
+    <!--</div>-->
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</main>
