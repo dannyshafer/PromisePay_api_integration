@@ -6,7 +6,8 @@ This is a simple Rails app skeleton which has the most straightforward integrati
 1. Clone
 2. Bundle
 3. Migrate
-4. Set .env variables
+4. Create .env file in the root folder
+4. Set .env variables for PROMISEPAY_USER and PROMISEPAY_TOKEN
 5. Create users at users/new
 
 Visit the following link for more comprehensive instructions on the PP gem and its use:
