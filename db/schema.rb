@@ -11,9 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151106234054) do
+ActiveRecord::Schema.define(version: 20151228190123) do
 
   create_table "items", force: :cascade do |t|
+    t.string   "name"
+    t.string   "payment_type"
+    t.string   "amount"
+    t.string   "buyer_id"
+    t.string   "seller_id"
+    t.string   "description"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "monthly_bills", force: :cascade do |t|
     t.string   "name"
     t.string   "payment_type"
     t.string   "amount"

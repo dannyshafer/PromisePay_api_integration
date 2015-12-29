@@ -38,6 +38,7 @@ class ItemsController < ApplicationController
           seller_id: @item.seller_id,
           description: @item.description
         )
+        MonthlyBill.create(name: @item.name, payment_type: "2", amount: @item.amount, buyer_id: @item.buyer_id, seller_id: @item.seller_id, description: @item.description)
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
       else
@@ -76,6 +77,20 @@ class ItemsController < ApplicationController
     redirect_to items_url
   end
 
+  def monthly_bill(name, amount, payment_type, buyer_id, seller_id, description)
+    client = Promisepay::Client.new(username: ENV['PROMISEPAY_USERNAME'], token: ENV['PROMISEPAY_TOKEN'])
+    item = client.items.create(
+      id: SecureRandom.hex,
+      name: name,
+      amount: amount,
+      payment_type: payment_type,
+      buyer_id: buyer_id,
+      seller_id: seller_id,
+      description: description
+    )
+    item.make_payment(account_id: "a8c31df8-38e5-4d2d-bd72-0107c23f191e")
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
@@ -84,6 +99,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name, :amount, :buyer_id, :seller_id, :description)
+      params.require(:item).permit(:name, :amount, :buyer_id, :seller_id, :description, :payment_type)
     end
 end
