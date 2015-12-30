@@ -38,8 +38,8 @@ class ItemsController < ApplicationController
           seller_id: @item.seller_id,
           description: @item.description
         )
-        subscription = MonthlyBill.create(name: @item.name, payment_type: "2", amount: @item.amount, buyer_id: @item.buyer_id, seller_id: @item.seller_id, description: @item.description)
-        subscription.perform
+        payment_account = client.users.find(@item.buyer_id).card_accounts.first
+        subscription = MonthlyBill.create(name: @item.name, payment_type: "2", amount: @item.amount, buyer_id: @item.buyer_id, payment_account: payment_account, seller_id: @item.seller_id, description: @item.description)
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
       else
@@ -78,7 +78,7 @@ class ItemsController < ApplicationController
     redirect_to items_url
   end
 
-  def monthly_bill(name, amount, payment_type, buyer_id, seller_id, description)
+  def monthly_bill(name, amount, payment_type, buyer_id, payment_account, seller_id, description)
     client = Promisepay::Client.new(username: ENV['PROMISEPAY_USERNAME'], token: ENV['PROMISEPAY_TOKEN'])
     item = client.items.new(
       id: SecureRandom.hex,
@@ -92,7 +92,7 @@ class ItemsController < ApplicationController
     if item.save
       item.make_payment(account_id: "a8c31df8-38e5-4d2d-bd72-0107c23f191e")
     else
-      puts "everything broke! :("
+      puts ":( "*100
     end
   end
 

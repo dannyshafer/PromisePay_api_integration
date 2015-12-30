@@ -6,6 +6,7 @@ class CreateMonthlyBills < ActiveRecord::Migration
       t.string :amount
       t.string :buyer_id
       t.string :seller_id
+      t.string :payment_account
       t.string :description
 
       t.timestamps null: false

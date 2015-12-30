@@ -8,6 +8,6 @@ class MonthlyBill < ActiveRecord::Base
 
   def perform
     puts "hi from the model "*30
-    # Item.monthly_bill(self.name, self.amount, self.payment_type, self.buyer_id, self.seller_id, self.description)
+    # Item.monthly_bill(self.name, self.amount, self.payment_type, self.buyer_id, self.seller_id, self.payment_account, self.description)
   end
 end

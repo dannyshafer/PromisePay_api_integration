@@ -30,9 +30,10 @@ ActiveRecord::Schema.define(version: 20151228190123) do
     t.string   "amount"
     t.string   "buyer_id"
     t.string   "seller_id"
+    t.string   "payment_account"
     t.string   "description"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "users", force: :cascade do |t|
