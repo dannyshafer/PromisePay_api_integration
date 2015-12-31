@@ -38,7 +38,8 @@ class ItemsController < ApplicationController
           seller_id: @item.seller_id,
           description: @item.description
         )
-        payment_account = client.users.find(@item.buyer_id).card_accounts.first
+        buyer = client.users.find(@item.buyer_id)
+        payment_account = buyer.card_account.id
         subscription = MonthlyBill.create(name: @item.name, payment_type: "2", amount: @item.amount, buyer_id: @item.buyer_id, payment_account: payment_account, seller_id: @item.seller_id, description: @item.description)
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
@@ -46,6 +47,24 @@ class ItemsController < ApplicationController
         format.html { render :new }
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def charge(name, amount, payment_type, buyer_id, payment_account, seller_id, description)
+    client = Promisepay::Client.new(username: ENV['PROMISEPAY_USERNAME'], token: ENV['PROMISEPAY_TOKEN'])
+    item = client.items.create(
+      id: SecureRandom.hex,
+      name: name,
+      amount: amount,
+      payment_type: payment_type,
+      buyer_id: buyer_id,
+      seller_id: seller_id,
+      description: description
+    )
+    if item.save
+      item.make_payment(account_id: payment_account)
+    else
+      puts ":( "*100
     end
   end
 
@@ -76,24 +95,6 @@ class ItemsController < ApplicationController
   def pay
     @item = Item.find_by
     redirect_to items_url
-  end
-
-  def monthly_bill(name, amount, payment_type, buyer_id, payment_account, seller_id, description)
-    client = Promisepay::Client.new(username: ENV['PROMISEPAY_USERNAME'], token: ENV['PROMISEPAY_TOKEN'])
-    item = client.items.new(
-      id: SecureRandom.hex,
-      name: name,
-      amount: amount,
-      payment_type: payment_type,
-      buyer_id: buyer_id,
-      seller_id: seller_id,
-      description: description
-    )
-    if item.save
-      item.make_payment(account_id: "a8c31df8-38e5-4d2d-bd72-0107c23f191e")
-    else
-      puts ":( "*100
-    end
   end
 
   private

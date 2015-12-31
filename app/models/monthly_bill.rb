@@ -1,4 +1,6 @@
 class MonthlyBill < ActiveRecord::Base
+  require 'securerandom'
+  require 'promisepay'
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 
@@ -7,7 +9,25 @@ class MonthlyBill < ActiveRecord::Base
   end
 
   def perform
-    puts "hi from the model "*30
-    # Item.monthly_bill(self.name, self.amount, self.payment_type, self.buyer_id, self.seller_id, self.payment_account, self.description)
+    client = Promisepay::Client.new(username: ENV['PROMISEPAY_USERNAME'], token: ENV['PROMISEPAY_TOKEN'])
+    puts "this is the client.inspect "*10
+    puts client.inspect
+    puts "this is the client.inspect "*10
+    item = client.items.create(
+      id: SecureRandom.hex,
+      name: self.name,
+      amount: self.amount,
+      payment_type: self.payment_type,
+      buyer_id: self.buyer_id,
+      seller_id: self.seller_id,
+      description: self.description
+    )
+    puts "this is the class "*10
+    puts item.class
+    puts "this is the class "*10
+    puts "this is the #inspect"*10
+    puts item.inspect
+    puts "this is the #inspect"*10
   end
+
 end
